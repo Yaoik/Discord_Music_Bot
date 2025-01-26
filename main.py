@@ -10,12 +10,10 @@ from typing import cast
 load_dotenv()
 TOKEN = str(os.getenv("DISCORD_BOT_TOKEN"))
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s     %(name)s: %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('discord')
+logger.setLevel(logging.DEBUG)
+logging.getLogger('discord.http').setLevel(logging.INFO)
+
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -29,7 +27,7 @@ async def test(interaction:discord.Interaction):
 async def on_ready():
     await load_cogs()
     bot.tree.add_command(test)
-    commands = await bot.tree.sync(guild=discord.Object(1227561350981619762))
+    commands = await bot.tree.sync(guild=discord.Object(478560120138366997))
     logger.info(f"sync {commands}")
     await asyncio.sleep(2)
     await bot.change_presence(
