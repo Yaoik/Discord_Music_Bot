@@ -278,4 +278,4 @@ class Music(commands.Cog):
         return await message.edit(content='Жду твою говномузыку', view=MusicControlView(music_context=guild_context))
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(Music(bot), guild=discord.Object(1227561350981619762))
+    await bot.add_cog(Music(bot))
