@@ -25,7 +25,7 @@ ffmpeg_options = {
 class MusicData():
     source_url:str
     music_url:str
-    
+
 @dataclass
 class MusicContext():
     message: discord.WebhookMessage
@@ -37,10 +37,6 @@ class MusicContext():
         await self.message.delete()
         logger.info('del self')
         del self
-        
-    def __del__(self):
-        logger.info('Я удалён(')
-
 
 
 class AudioURLProcessor:
@@ -65,7 +61,7 @@ class AudioURLProcessor:
             'cookiefile': 'youtube_cookies.txt',
         }
         
-        def extract():
+        def extract():# -> Any | None:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=False)
                 assert info is not None
@@ -129,7 +125,7 @@ class MusicControlView(discord.ui.View):
 
     @discord.ui.button(label=f"Очередь: 0", style=discord.ButtonStyle.secondary, disabled=True)
     async def queue_length_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        pass  # Эта кнопка просто отображает состояние, она не обрабатывает нажатия
+        pass  # Сюда ничего не писать, нужна только для отображения (потом цвет поменять надо)
 
     async def get_next_music(self) -> MusicData | None:
         return self.music_context.music_queue[0] if self.music_context.music_queue else None
@@ -282,4 +278,4 @@ class Music(commands.Cog):
         return await message.edit(content='Жду твою говномузыку', view=MusicControlView(music_context=guild_context))
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(Music(bot), guild=discord.Object(478560120138366997))
+    await bot.add_cog(Music(bot), guild=discord.Object(1227561350981619762))

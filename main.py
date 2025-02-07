@@ -27,7 +27,7 @@ async def test(interaction:discord.Interaction):
 async def on_ready():
     await load_cogs()
     bot.tree.add_command(test)
-    commands = await bot.tree.sync(guild=discord.Object(478560120138366997))
+    commands = await bot.tree.sync(guild=discord.Object(1227561350981619762))
     logger.info(f"sync {commands}")
     await asyncio.sleep(2)
     await bot.change_presence(
