@@ -275,7 +275,7 @@ class Music(commands.Cog):
             await guild_context.cleanup()
         guild_context = MusicContext(message=message, voice_client=voice_client)
         
-        return await message.edit(content='Жду твою говномузыку', view=MusicControlView(music_context=guild_context))
+        return await message.edit(content='Жду', view=MusicControlView(music_context=guild_context))
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Music(bot))
